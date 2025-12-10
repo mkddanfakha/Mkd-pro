@@ -122,6 +122,24 @@ router.beforeEach((to, from, next) => {
     }
     ogUrl.setAttribute('content', window.location.origin + to.fullPath);
 
+    // Update Twitter URL
+    let twitterUrl = document.querySelector('meta[name="twitter:url"]');
+    if (!twitterUrl) {
+        twitterUrl = document.createElement('meta');
+        twitterUrl.setAttribute('name', 'twitter:url');
+        document.head.appendChild(twitterUrl);
+    }
+    twitterUrl.setAttribute('content', window.location.origin + to.fullPath);
+
+    // Update canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', window.location.origin + to.fullPath);
+
     next();
 });
 
