@@ -47,39 +47,39 @@
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "MKD-pro",
-        "description": "Développeur web spécialisé en digitalisation des PME au Sénégal",
-        "url": "{{ url('/') }}",
-        "logo": "{{ url(asset('logo.png')) }}",
-        "image": "{{ url(asset('logo.png')) }}",
-        "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "SN",
-            "addressLocality": "Sénégal"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+221-78-926-77-87",
-            "contactType": "Customer Service",
-            "availableLanguage": ["French"]
-        },
-        "areaServed": {
-            "@type": "Country",
-            "name": "Sénégal"
-        },
-        "serviceType": [
-            "Développement d'applications métiers",
-            "Création de sites web",
-            "Automatisation",
-            "Accompagnement digital"
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'ProfessionalService',
+        'name' => 'MKD-pro',
+        'description' => 'Développeur web spécialisé en digitalisation des PME au Sénégal',
+        'url' => url('/'),
+        'logo' => url(asset('logo.png')),
+        'image' => url(asset('logo.png')),
+        'address' => [
+            '@type' => 'PostalAddress',
+            'addressCountry' => 'SN',
+            'addressLocality' => 'Sénégal',
         ],
-        "sameAs": [
-            "https://wa.me/33665411064"
-        ]
-    }
+        'contactPoint' => [
+            '@type' => 'ContactPoint',
+            'telephone' => '+221-78-926-77-87',
+            'contactType' => 'Customer Service',
+            'availableLanguage' => ['French'],
+        ],
+        'areaServed' => [
+            '@type' => 'Country',
+            'name' => 'Sénégal',
+        ],
+        'serviceType' => [
+            'Développement d\'applications métiers',
+            'Création de sites web',
+            'Automatisation',
+            'Accompagnement digital',
+        ],
+        'sameAs' => [
+            'https://wa.me/33665411064',
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
