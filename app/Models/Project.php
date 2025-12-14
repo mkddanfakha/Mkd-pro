@@ -17,6 +17,7 @@ class Project extends Model
 
     protected $casts = [
         'features' => 'array',
+        'image' => 'array', // Permet de stocker un objet JSON avec les vidéos
         'order' => 'integer',
     ];
 }

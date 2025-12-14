@@ -29,7 +29,10 @@ class ProjectSeeder extends Seeder
                 'Multi-utilisateur',
                 'Interface simple téléphone/Tablette/PC',
             ],
-            'image' => 'placeholder',
+            'image' => [
+                'fr' => 'projects/videos/stock-vente-demo-fr.mp4',
+                'wo' => 'projects/videos/stock-vente-demo-wo.mp4',
+            ],
             'order' => 1,
         ]);
 
