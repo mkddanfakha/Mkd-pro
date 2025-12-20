@@ -62,7 +62,7 @@
         ],
         'contactPoint' => [
             '@type' => 'ContactPoint',
-            'telephone' => '+221-78-926-77-87',
+            'telephone' => '+33-6-65-41-10-64',
             'contactType' => 'Customer Service',
             'availableLanguage' => ['French'],
         ],
@@ -77,7 +77,7 @@
             'Accompagnement digital',
         ],
         'sameAs' => [
-            'https://wa.me/33665411064',
+            'https://wa.me/221789267787',
         ],
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>

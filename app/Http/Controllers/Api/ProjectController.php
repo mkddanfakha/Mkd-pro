@@ -16,15 +16,26 @@ class ProjectController extends Controller
     {
         $projects = Project::orderBy('order')
             ->get()
-            ->map(fn($project) => [
-                'id' => $project->id,
-                'title' => $project->title,
-                'client' => $project->client,
-                'description' => $project->description,
-                'features' => $project->features ?? [],
-                'image' => $project->image,
-                'order' => $project->order,
-            ])
+            ->map(function($project) {
+                // S'assurer que l'image est correctement décodée si c'est une chaîne JSON
+                $image = $project->image;
+                if (is_string($image)) {
+                    $decoded = json_decode($image, true);
+                    if (json_last_error() === JSON_ERROR_NONE) {
+                        $image = $decoded;
+                    }
+                }
+                
+                return [
+                    'id' => $project->id,
+                    'title' => $project->title,
+                    'client' => $project->client,
+                    'description' => $project->description,
+                    'features' => $project->features ?? [],
+                    'image' => $image,
+                    'order' => $project->order,
+                ];
+            })
             ->values()
             ->all();
         

@@ -30,8 +30,8 @@
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-semibold mb-2 text-white">WhatsApp</h3>
-                                    <a href="https://wa.me/33665411064" target="_blank" class="text-[#005BFF] hover:text-[#00A3FF] transition-colors">
-                                        (+33) 6 65 41 10 64
+                                    <a href="https://wa.me/221789267787" target="_blank" class="text-[#005BFF] hover:text-[#00A3FF] transition-colors">
+                                        (+221) 78 926 77 87
                                     </a>
                                 </div>
                             </div>
@@ -44,8 +44,8 @@
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-semibold mb-2 text-white">Téléphone</h3>
-                                    <a href="tel:+221789267787" class="text-[#005BFF] hover:text-[#00A3FF] transition-colors">
-                                        (+221) 78 926 77 87
+                                    <a href="tel:+33665411064" class="text-[#005BFF] hover:text-[#00A3FF] transition-colors">
+                                        (+33) 6 65 41 10 64
                                     </a>
                                 </div>
                             </div>
@@ -58,8 +58,8 @@
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-semibold mb-2 text-white">Email</h3>
-                                    <a href="mailto:dmohamedkounta@gmail.com" class="text-[#005BFF] hover:text-[#00A3FF] transition-colors">
-                                        dmohamedkounta@gmail.com
+                                    <a href="mailto:contact@mkd-pro.com" class="text-[#005BFF] hover:text-[#00A3FF] transition-colors">
+                                        contact@mkd-pro.com
                                     </a>
                                 </div>
                             </div>

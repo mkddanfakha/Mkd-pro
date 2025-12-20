@@ -211,6 +211,10 @@ onMounted(async () => {
         // L'API retourne maintenant directement un tableau
         projects.value = Array.isArray(response.data) ? response.data : [];
         console.log('Projects loaded:', projects.value);
+        // Debug: vérifier la structure des images
+        projects.value.forEach((project, index) => {
+            console.log(`Project ${index} image:`, project.image, 'Type:', typeof project.image);
+        });
     } catch (error) {
         console.error('Error loading projects:', error);
     } finally {
@@ -227,9 +231,20 @@ const isVideo = (mediaPath) => {
 
 const hasMultipleVideos = (mediaPath) => {
     if (!mediaPath) return false;
+    
+    // Si c'est une chaîne JSON, la parser
+    let parsedPath = mediaPath;
+    if (typeof mediaPath === 'string' && (mediaPath.startsWith('{') || mediaPath.startsWith('['))) {
+        try {
+            parsedPath = JSON.parse(mediaPath);
+        } catch (e) {
+            return false;
+        }
+    }
+    
     // Vérifier si c'est un objet avec des vidéos multiples
-    if (typeof mediaPath === 'object' && mediaPath !== null) {
-        return (mediaPath.fr && isVideo(mediaPath.fr)) || (mediaPath.wo && isVideo(mediaPath.wo));
+    if (typeof parsedPath === 'object' && parsedPath !== null && !Array.isArray(parsedPath)) {
+        return (parsedPath.fr && isVideo(parsedPath.fr)) || (parsedPath.wo && isVideo(parsedPath.wo));
     }
     return false;
 };
@@ -239,9 +254,20 @@ const getProjectMediaForGrid = (mediaPath) => {
         return null;
     }
     
+    // Si c'est une chaîne JSON, la parser
+    let parsedPath = mediaPath;
+    if (typeof mediaPath === 'string' && (mediaPath.startsWith('{') || mediaPath.startsWith('['))) {
+        try {
+            parsedPath = JSON.parse(mediaPath);
+        } catch (e) {
+            // Si le parsing échoue, traiter comme une chaîne normale
+            parsedPath = mediaPath;
+        }
+    }
+    
     // Si c'est un objet avec plusieurs vidéos, prendre la vidéo française par défaut
-    if (typeof mediaPath === 'object' && mediaPath !== null) {
-        const defaultVideo = mediaPath.fr || mediaPath.wo || mediaPath.image || null;
+    if (typeof parsedPath === 'object' && parsedPath !== null && !Array.isArray(parsedPath)) {
+        const defaultVideo = parsedPath.fr || parsedPath.wo || parsedPath.image || null;
         if (defaultVideo) {
             return defaultVideo.startsWith('http') ? defaultVideo : `/${defaultVideo}`;
         }
@@ -249,11 +275,11 @@ const getProjectMediaForGrid = (mediaPath) => {
     }
     
     // Si le chemin commence par http, c'est une URL complète
-    if (typeof mediaPath === 'string' && mediaPath.startsWith('http')) {
-        return mediaPath;
+    if (typeof parsedPath === 'string' && parsedPath.startsWith('http')) {
+        return parsedPath;
     }
     // Sinon, c'est un chemin relatif depuis public/
-    return typeof mediaPath === 'string' ? `/${mediaPath}` : null;
+    return typeof parsedPath === 'string' ? `/${parsedPath}` : null;
 };
 
 const getProjectMediaForModal = (mediaPath, language = 'fr') => {
@@ -261,9 +287,20 @@ const getProjectMediaForModal = (mediaPath, language = 'fr') => {
         return null;
     }
     
+    // Si c'est une chaîne JSON, la parser
+    let parsedPath = mediaPath;
+    if (typeof mediaPath === 'string' && (mediaPath.startsWith('{') || mediaPath.startsWith('['))) {
+        try {
+            parsedPath = JSON.parse(mediaPath);
+        } catch (e) {
+            // Si le parsing échoue, traiter comme une chaîne normale
+            parsedPath = mediaPath;
+        }
+    }
+    
     // Si c'est un objet avec plusieurs vidéos, prendre celle de la langue sélectionnée
-    if (typeof mediaPath === 'object' && mediaPath !== null) {
-        const videoPath = mediaPath[language] || mediaPath.fr || mediaPath.wo || mediaPath.image || null;
+    if (typeof parsedPath === 'object' && parsedPath !== null && !Array.isArray(parsedPath)) {
+        const videoPath = parsedPath[language] || parsedPath.fr || parsedPath.wo || parsedPath.image || null;
         if (videoPath) {
             return videoPath.startsWith('http') ? videoPath : `/${videoPath}`;
         }
@@ -271,11 +308,11 @@ const getProjectMediaForModal = (mediaPath, language = 'fr') => {
     }
     
     // Si le chemin commence par http, c'est une URL complète
-    if (typeof mediaPath === 'string' && mediaPath.startsWith('http')) {
-        return mediaPath;
+    if (typeof parsedPath === 'string' && parsedPath.startsWith('http')) {
+        return parsedPath;
     }
     // Sinon, c'est un chemin relatif depuis public/
-    return typeof mediaPath === 'string' ? `/${mediaPath}` : null;
+    return typeof parsedPath === 'string' ? `/${parsedPath}` : null;
 };
 
 const openModal = (project) => {

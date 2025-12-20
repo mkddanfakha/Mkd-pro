@@ -54,12 +54,12 @@ class ContactController extends Controller
                 ]);
             }
             
-            $result = Mail::to('dmohamedkounta@gmail.com')->send(
+            $result = Mail::to('contact@mkd-pro.com')->send(
                 new ContactNotification($validated)
             );
             
             $emailSent = true;
-            \Log::info('Email de contact envoyé avec succès à dmohamedkounta@gmail.com', [
+            \Log::info('Email de contact envoyé avec succès à contact@mkd-pro.com', [
                 'contact_id' => $contact->id,
                 'name' => $validated['name'],
                 'email' => $validated['email'] ?? 'N/A',

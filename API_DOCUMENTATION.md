@@ -29,7 +29,7 @@ Retourne toutes les données nécessaires pour la page d'accueil.
       },
       "whatsapp": {
         "text": "Contact WhatsApp",
-        "link": "https://wa.me/33665411064"
+        "link": "https://wa.me/221789267787"
       }
     }
   },
@@ -130,7 +130,7 @@ Envoie un message de contact.
 ```json
 {
   "name": "John Doe",
-  "phone": "+221 78 926 77 87",
+  "phone": "+33 6 65 41 10 64",
   "email": "john@example.com",
   "company": "Mon Entreprise",
   "message": "Bonjour, je souhaite..."
@@ -144,7 +144,7 @@ Envoie un message de contact.
   "data": {
     "id": 1,
     "name": "John Doe",
-    "phone": "+221 78 926 77 87",
+    "phone": "+33 6 65 41 10 64",
     "email": "john@example.com",
     "company": "Mon Entreprise",
     "message": "Bonjour, je souhaite...",
@@ -185,7 +185,7 @@ curl -X POST http://localhost:8000/api/v1/contact \
   -H "Content-Type: application/json" \
   -d '{
     "name": "John Doe",
-    "phone": "+221 78 926 77 87",
+    "phone": "+33 6 65 41 10 64",
     "email": "john@example.com",
     "message": "Bonjour, je souhaite discuter de mon projet."
   }'

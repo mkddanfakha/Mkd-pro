@@ -17,14 +17,14 @@ class TestEmail extends Command
         
         $testData = [
             'name' => 'Test User',
-            'phone' => '+221 78 926 77 87',
+            'phone' => '+33 6 65 41 10 64',
             'email' => 'test@example.com',
             'company' => 'Test Company',
             'message' => 'Ceci est un message de test pour vérifier l\'envoi d\'email.',
         ];
 
         try {
-            Mail::to('dmohamedkounta@gmail.com')->send(
+            Mail::to('contact@mkd-pro.com')->send(
                 new ContactNotification($testData)
             );
             $this->info('✅ Email envoyé avec succès !');

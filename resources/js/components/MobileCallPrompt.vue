@@ -26,12 +26,12 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 
-const phoneNumber = '+221789267787';
+const phoneNumber = '+33665411064';
 const dismissed = ref(false);
 const isMobile = ref(false);
 
 const formattedPhone = computed(() => {
-    return '(+221) 78 926 77 87';
+    return '(+33) 6 65 41 10 64';
 });
 
 const showPrompt = computed(() => {

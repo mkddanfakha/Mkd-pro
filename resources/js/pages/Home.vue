@@ -59,7 +59,7 @@
                             Demander une démo
                         </RippleButton>
                         <RippleButton
-                            href="https://wa.me/33665411064"
+                            href="https://wa.me/221789267787"
                             custom-class="btn-secondary inline-flex items-center justify-center gap-2"
                         >
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

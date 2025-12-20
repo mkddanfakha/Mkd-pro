@@ -27,7 +27,7 @@ class HomeController extends Controller
                     ],
                     'whatsapp' => [
                         'text' => 'Contact WhatsApp',
-                        'link' => 'https://wa.me/33665411064',
+                        'link' => 'https://wa.me/221789267787',
                     ],
                 ],
             ],
