@@ -80,7 +80,8 @@
                         <Form 
                             @submit="submitForm" 
                             :validation-schema="schema" 
-                            v-slot="{ errors: formErrors, validateField }"
+                            v-slot="{ errors: formErrors, validateField, resetForm }"
+                            :key="formKey"
                         >
                             <div class="space-y-6">
                                 <!-- Nom -->
@@ -222,6 +223,7 @@ const loading = ref(false);
 const successMessage = ref('');
 const errorMessage = ref('');
 const captchaRef = ref(null);
+const formKey = ref(0);
 
 // Schéma de validation avec VeeValidate et Yup
 const schema = yup.object({
@@ -275,6 +277,11 @@ const submitForm = async (values) => {
 
         await contactService.sendMessage(formData);
         successMessage.value = 'Votre message a été envoyé avec succès !';
+        
+        // Réinitialiser le formulaire VeeValidate
+        resetForm();
+        
+        // Réinitialiser les valeurs locales
         form.value = {
             name: '',
             company: '',
@@ -282,6 +289,10 @@ const submitForm = async (values) => {
             email: '',
             message: '',
         };
+        
+        // Forcer la réinitialisation complète du formulaire en changeant la clé
+        formKey.value += 1;
+        
         // Recharger un nouveau captcha après succès
         if (captchaRef.value) {
             captchaRef.value.refreshCaptcha();
