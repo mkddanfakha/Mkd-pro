@@ -80,7 +80,7 @@
                         <Form 
                             @submit="submitForm" 
                             :validation-schema="schema" 
-                            v-slot="{ errors: formErrors, validateField, resetForm }"
+                            v-slot="{ errors: formErrors, validateField }"
                             :key="formKey"
                         >
                             <div class="space-y-6">
@@ -205,7 +205,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, nextTick } from 'vue';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 import { contactService } from '../api/services';
@@ -278,9 +278,6 @@ const submitForm = async (values) => {
         await contactService.sendMessage(formData);
         successMessage.value = 'Votre message a été envoyé avec succès !';
         
-        // Réinitialiser le formulaire VeeValidate
-        resetForm();
-        
         // Réinitialiser les valeurs locales
         form.value = {
             name: '',
@@ -290,13 +287,16 @@ const submitForm = async (values) => {
             message: '',
         };
         
-        // Forcer la réinitialisation complète du formulaire en changeant la clé
-        formKey.value += 1;
-        
         // Recharger un nouveau captcha après succès
         if (captchaRef.value) {
             captchaRef.value.refreshCaptcha();
         }
+        
+        // Forcer la réinitialisation complète du formulaire en changeant la clé
+        // Cela va recréer complètement le composant Form et effacer tous les états de validation
+        // On attend un tick pour s'assurer que les valeurs sont bien vidées avant de recréer le formulaire
+        await nextTick();
+        formKey.value += 1;
     } catch (error) {
         if (error.errors) {
             // Erreurs de validation du serveur
